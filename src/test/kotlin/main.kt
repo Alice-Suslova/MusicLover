@@ -4,6 +4,7 @@ fun main() {
 
     val buy = 12000
     val amountOfDiscount = 0.05
+    val middleDiscount = 100
     val bonus = 0.01
     val regularCustomer = true
     //val regularCustomer = false
@@ -11,30 +12,27 @@ fun main() {
     var sum = 0.0
 
     if (buy <= 1000) {
+        sum = buy - (buy * bonus)
         if (regularCustomer) {
-            sum = buy - (buy * 0.01)
             println("Сумма к оплате с учетом скидки постоянного клиента 1%,составляет: $sum")
         } else {
             println("Скидка не предоставляется!")
         }
     } else if ((buy >= 1001) && (buy <= 10_000)) {
+        sum = (buy - middleDiscount).toDouble()
         if (regularCustomer) {
-            sum = (buy - 100).toDouble()
-            val result = sum - (sum * 0.01)
+            val result = sum - (sum * bonus)
             println("Сумма к оплате с учетом скидки 5% и скидки постоянного покупателя 1% составляет: $result")
         } else {
-            sum = (buy - 100).toDouble()
             println("Сумма к оплате с учетом скидки 5% составляет: $sum")
         }
 
     } else if (buy > 10_001) {
+        sum = buy - (buy * amountOfDiscount)
         if (regularCustomer) {
-            sum = buy - (buy * amountOfDiscount)
-            val result = sum - (sum * 0.01)
+            val result = sum - (sum * bonus)
             println("Сумма к оплате с учетом скидки 5% и скидки постоянного покупателя 1% составляет: $result")
-
         } else {
-            sum = buy - (buy * amountOfDiscount)
             println("Сумма к оплате с учетом скидки 5% составляет: $sum")
         }
     }
